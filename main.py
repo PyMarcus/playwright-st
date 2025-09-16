@@ -5,6 +5,7 @@ from playwright.sync_api import sync_playwright
 from locators import *
 from locators.alert_locators import click_alerts
 from locators.dropdown_locators import select_dropdown
+from locators.windows_handling_locators import page_handler
 from locators.xpath_locators import PageObject
 
 if __name__ == '__main__':
@@ -17,7 +18,8 @@ if __name__ == '__main__':
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=False)
-            page = browser.new_page()
+            context = browser.new_context()
+            page = context.new_page()
             #page.goto(url)
 
             #type_email_input(page)
@@ -35,7 +37,9 @@ if __name__ == '__main__':
 
             #dropdown = select_dropdown(page)
 
-            click_alerts(page)
+            # click_alerts(page)
+
+            page_handler(page, context)
 
             page.wait_for_timeout(10000)
     except Exception as e:
