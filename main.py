@@ -3,6 +3,7 @@ from locators import *
 from playwright.sync_api import sync_playwright
 
 from locators import *
+from locators.alert_locators import click_alerts
 from locators.dropdown_locators import select_dropdown
 from locators.xpath_locators import PageObject
 
@@ -32,7 +33,9 @@ if __name__ == '__main__':
             #page_object = PageObject(page)
             #page_object.login(_username, _password)
 
-            dropdown = select_dropdown(page)
+            #dropdown = select_dropdown(page)
+
+            click_alerts(page)
 
             page.wait_for_timeout(10000)
     except Exception as e:
