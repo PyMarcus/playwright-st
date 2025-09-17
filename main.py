@@ -5,6 +5,8 @@ from playwright.sync_api import sync_playwright
 from locators import *
 from locators.alert_locators import click_alerts
 from locators.dropdown_locators import select_dropdown
+from locators.page_links_locators import options
+from locators.updown_locators import UpDown
 from locators.windows_handling_locators import page_handler
 from locators.xpath_locators import PageObject
 
@@ -39,8 +41,13 @@ if __name__ == '__main__':
 
             # click_alerts(page)
 
-            page_handler(page, context)
+            #page_handler(page, context)
 
-            page.wait_for_timeout(10000)
+            #options(page)
+
+            updown = UpDown("locators/upload.txt", ".")
+            updown.upload(page)
+
+            page.wait_for_timeout(5000)
     except Exception as e:
         print(f"Error: {e}")
